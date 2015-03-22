@@ -7,7 +7,7 @@ import sduwh.cp.bookstore.domain.User;
 public interface UserDAO {
 
 	/**
-	 * �����û�����ȡ User ����
+	 * 根据用户名获取 User 对象
 	 * @param username
 	 * @return
 	 */

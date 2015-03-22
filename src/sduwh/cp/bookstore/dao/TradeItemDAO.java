@@ -10,13 +10,13 @@ import sduwh.cp.bookstore.domain.TradeItem;
 public interface TradeItemDAO {
 
 	/**
-	 * �������� TradeItem ����
+	 * 批量保存 TradeItem 对象
 	 * @param items
 	 */
 	public abstract void batchSave(Collection<TradeItem> items);
 
 	/**
-	 * ���� tradeId ��ȡ��������� TradeItem �ļ���
+	 * 根据 tradeId 获取和其关联的 TradeItem 的集合
 	 * @param tradeId
 	 * @return
 	 */

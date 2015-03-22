@@ -8,8 +8,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * ����� Utils ��������
- * �ṩ����˽�б���, ��ȡ�������� Class, ��ȡ������Ԫ�����Ե� Utils ����
+ * 反射的 Utils 函数集合
+ * 提供访问私有变量, 获取泛型类型 Class, 提取集合中元素属性等 Utils 函数
  * @author Administrator
  *
  */
@@ -17,8 +17,8 @@ public class ReflectionUtils {
 
 	
 	/**
-	 * ͨ������, ��ö��� Class ʱ�����ĸ���ķ��Ͳ���������
-	 * ��: public EmployeeDao extends BaseDao<Employee, String>
+	 * 通过反射, 获得定义 Class 时声明的父类的泛型参数的类型
+	 * 如: public EmployeeDao extends BaseDao<Employee, String>
 	 * @param clazz
 	 * @param index
 	 * @return
@@ -45,8 +45,8 @@ public class ReflectionUtils {
 	}
 	
 	/**
-	 * ͨ������, ��� Class �����������ĸ���ķ��Ͳ�������
-	 * ��: public EmployeeDao extends BaseDao<Employee, String>
+	 * 通过反射, 获得 Class 定义中声明的父类的泛型参数类型
+	 * 如: public EmployeeDao extends BaseDao<Employee, String>
 	 * @param <T>
 	 * @param clazz
 	 * @return
@@ -57,7 +57,7 @@ public class ReflectionUtils {
 	}
 	
 	/**
-	 * ѭ������ת��, ��ȡ����� DeclaredMethod
+	 * 循环向上转型, 获取对象的 DeclaredMethod
 	 * @param object
 	 * @param methodName
 	 * @param parameterTypes
@@ -70,7 +70,7 @@ public class ReflectionUtils {
 				//superClass.getMethod(methodName, parameterTypes);
 				return superClass.getDeclaredMethod(methodName, parameterTypes);
 			} catch (NoSuchMethodException e) {
-				//Method ���ڵ�ǰ�ඨ��, ��������ת��
+				//Method 不在当前类定义, 继续向上转型
 			}
 			//..
 		}
@@ -79,7 +79,7 @@ public class ReflectionUtils {
 	}
 	
 	/**
-	 * ʹ filed ��Ϊ�ɷ���
+	 * 使 filed 变为可访问
 	 * @param field
 	 */
 	public static void makeAccessible(Field field){
@@ -89,7 +89,7 @@ public class ReflectionUtils {
 	}
 	
 	/**
-	 * ѭ������ת��, ��ȡ����� DeclaredField
+	 * 循环向上转型, 获取对象的 DeclaredField
 	 * @param object
 	 * @param filedName
 	 * @return
@@ -100,14 +100,14 @@ public class ReflectionUtils {
 			try {
 				return superClass.getDeclaredField(filedName);
 			} catch (NoSuchFieldException e) {
-				//Field ���ڵ�ǰ�ඨ��, ��������ת��
+				//Field 不在当前类定义, 继续向上转型
 			}
 		}
 		return null;
 	}
 	
 	/**
-	 * ֱ�ӵ��ö��󷽷�, ���������η�(private, protected)
+	 * 直接调用对象方法, 而忽略修饰符(private, protected)
 	 * @param object
 	 * @param methodName
 	 * @param parameterTypes
@@ -130,14 +130,14 @@ public class ReflectionUtils {
 		try {
 			return method.invoke(object, parameters);
 		} catch(IllegalAccessException e) {
-			System.out.println("�������׳����쳣");
+			System.out.println("不可能抛出的异常");
 		} 
 		
 		return null;
 	}
 	
 	/**
-	 * ֱ�����ö�������ֵ, ���� private/protected ���η�, Ҳ������ setter
+	 * 直接设置对象属性值, 忽略 private/protected 修饰符, 也不经过 setter
 	 * @param object
 	 * @param fieldName
 	 * @param value
@@ -153,12 +153,12 @@ public class ReflectionUtils {
 		try {
 			field.set(object, value);
 		} catch (IllegalAccessException e) {
-			System.out.println("�������׳����쳣");
+			System.out.println("不可能抛出的异常");
 		}
 	}
 	
 	/**
-	 * ֱ�Ӷ�ȡ���������ֵ, ���� private/protected ���η�, Ҳ������ getter
+	 * 直接读取对象的属性值, 忽略 private/protected 修饰符, 也不经过 getter
 	 * @param object
 	 * @param fieldName
 	 * @return
@@ -176,7 +176,7 @@ public class ReflectionUtils {
 		try {
 			result = field.get(object);
 		} catch (IllegalAccessException e) {
-			System.out.println("�������׳����쳣");
+			System.out.println("不可能抛出的异常");
 		}
 		
 		return result;
