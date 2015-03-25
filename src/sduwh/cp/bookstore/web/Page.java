@@ -14,6 +14,12 @@ public class Page<T> {
 		this.pageNo = pageNo;
 	}
 
+	
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+
 	// 需要校验一下
 	public int getPageNo() {
 		if (pageNo < 0)

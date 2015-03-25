@@ -2,10 +2,10 @@
 
 <c3p0-config>
 
-  <named-config name="mvcapp"> 
+  <named-config name="javawebapp"> 
 	
     <property name="user">root</property>
-    <property name="jdbcUrl">jdbc:mysql:///BookStore</property>
+    <property name="jdbcUrl">jdbc:mysql:///bookstore</property>
     <property name="driverClass">com.mysql.jdbc.Driver</property>
     <property name="password"> </property>
 
